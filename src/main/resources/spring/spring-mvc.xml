@@ -10,42 +10,40 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-                        
+
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.ssm.example" />
-	
+
 	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
 		<property name="dateFormat">
 			<bean class="java.text.SimpleDateFormat">
 				<constructor-arg index="0" value="yyyy-MM-dd HH:mm:ss" />
-				<constructor-arg index="1" value="#{T(java.util.Locale).SIMPLIFIED_CHINESE}" />
+				<constructor-arg index="1"
+					value="#{T(java.util.Locale).SIMPLIFIED_CHINESE}" />
 				<property name="timeZone" value="GMT+8" />
 			</bean>
 		</property>
 	</bean>
-	
-	<bean factory-bean="objectMapper" factory-method="configure" >
-		<constructor-arg index="0" value="#{T(com.fasterxml.jackson.databind.DeserializationFeature).FAIL_ON_UNKNOWN_PROPERTIES}"/>
-		<constructor-arg index="1" value="false"/>
+
+	<bean factory-bean="objectMapper" factory-method="configure">
+		<constructor-arg index="0"
+			value="#{T(com.fasterxml.jackson.databind.DeserializationFeature).FAIL_ON_UNKNOWN_PROPERTIES}" />
+		<constructor-arg index="1" value="false" />
 	</bean>
-	
-	
+
 	<mvc:annotation-driven>
-	<mvc:message-converters register-defaults="true">
-		<bean
-			class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-			<constructor-arg name="objectMapper" ref="objectMapper">
-			</constructor-arg>
-		</bean>
-	</mvc:message-converters>
-</mvc:annotation-driven>
-	
-	
-	<!-- 定义跳转的文件的前后缀 ，视图模式配置
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	-->
-    
+		<mvc:message-converters register-defaults="true">
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<constructor-arg name="objectMapper" ref="objectMapper">
+				</constructor-arg>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+
+	<!-- 定义跳转的文件的前后缀 ，视图模式配置 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/jsp/" /> <property name="suffix" value=".jsp" 
+		/> </bean> -->
+
 </beans>
