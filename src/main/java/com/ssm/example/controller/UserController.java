@@ -2,6 +2,7 @@ package com.ssm.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,6 +19,11 @@ public class UserController {
 	@ResponseBody
 	public UserEntity getUser() {
 		UserEntity user = userService.getUser();
+		return user;
+	}
+	@RequestMapping("/setUser")
+	@ResponseBody
+	public UserEntity setUser(@RequestBody UserEntity user) {
 		return user;
 	}
 	

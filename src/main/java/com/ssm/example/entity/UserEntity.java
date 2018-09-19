@@ -1,6 +1,7 @@
 package com.ssm.example.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserEntity implements Serializable{
 	/**
@@ -10,6 +11,7 @@ public class UserEntity implements Serializable{
 	private int id;
 	private String username;
 	private String password;
+	private Date time;
 	
 	public int getId() {
 		return id;
@@ -28,6 +30,12 @@ public class UserEntity implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Date getTime() {
+		return time;
+	}
+	public void setTime(Date time) {
+		this.time = time;
 	}
 	
 }
